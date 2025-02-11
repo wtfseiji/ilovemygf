@@ -15,6 +15,7 @@
             text-align: center;
             overflow: hidden;
             position: relative;
+            flex-direction: column;
         }
         .container {
             background: white;
@@ -51,14 +52,25 @@
             font-size: 24px;
             opacity: 1;
             animation: floatUp 3s ease-out forwards;
+            z-index: 100; /* Ensure emojis appear on top */
         }
         @keyframes floatUp {
             0% { transform: translateY(0); opacity: 1; }
             100% { transform: translateY(-150px); opacity: 0; }
         }
+        .gif-container {
+            margin-bottom: 10px;
+        }
+        .gif-container img {
+            width: 150px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
+    <div class="gif-container">
+        <img src="cat-cat-love.gif" alt="Cute cat with rose">
+    </div>
     <div class="container">
         <h1>Will you be my Valentine? ❤️</h1>
         <div class="buttons">
@@ -94,6 +106,7 @@
             sadFace.style.top = '50%';
             sadFace.style.transform = 'translate(-50%, -50%)';
             sadFace.style.fontSize = '50px';
+            sadFace.style.zIndex = '100'; /* Ensure the sad face appears above all elements */
             document.body.appendChild(sadFace);
             setTimeout(() => sadFace.remove(), 3000);
         }
