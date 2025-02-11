@@ -14,6 +14,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             overflow: hidden;
+            position: relative;
         }
         .container {
             background: white;
@@ -21,6 +22,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             position: relative;
+            z-index: 10;
         }
         h1 {
             color: #d63384;
@@ -52,7 +54,7 @@
         }
         @keyframes floatUp {
             0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-100px); opacity: 0; }
+            100% { transform: translateY(-150px); opacity: 0; }
         }
     </style>
 </head>
@@ -76,8 +78,9 @@
                 let heart = document.createElement('div');
                 heart.classList.add('emoji');
                 heart.textContent = '❤️';
-                heart.style.left = Math.random() * 100 + 'px';
-                heart.style.top = Math.random() * 100 + 'px';
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.top = (window.innerHeight - 50) + 'px';
+                heart.style.fontSize = Math.random() * 20 + 20 + 'px';
                 document.body.appendChild(heart);
                 setTimeout(() => heart.remove(), 3000);
             }
@@ -90,6 +93,7 @@
             sadFace.style.left = '50%';
             sadFace.style.top = '50%';
             sadFace.style.transform = 'translate(-50%, -50%)';
+            sadFace.style.fontSize = '50px';
             document.body.appendChild(sadFace);
             setTimeout(() => sadFace.remove(), 3000);
         }
