@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffcccb;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+            flex-direction: column;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+        h1 {
+            color: #d63384;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .yes-btn {
+            background-color: green;
+            color: white;
+        }
+        .no-btn {
+            background-color: red;
+            color: white;
+        }
+        .emoji {
+            position: absolute;
+            font-size: 24px;
+            opacity: 1;
+            animation: floatUp 3s ease-out forwards;
+            z-index: 100; /* Ensure emojis appear on top */
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-150px); opacity: 0; }
+        }
+        .image-container {
+            margin-bottom: 10px;
+        }
+        .image-container img {
+            width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="cat.jpeg" alt="Cute cat with rose">
+    </div>
+    <div class="container">
+        <h1>Will you be my Valentine? ❤️</h1>
+        <div class="buttons">
+            <button class="yes-btn" onclick="showMessage('thank you bebi, I love you so much!'); showHearts()">Yes</button>
+            <button class="no-btn" onclick="showMessage(':<'); showSadFace()">No</button>
+        </div>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        function showMessage(msg) {
+            document.getElementById('message').textContent = msg;
+        }
+
+        function showHearts() {
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement('div');
+                heart.classList.add('emoji');
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * window.innerWidth + 'px';
+                heart.style.top = (window.innerHeight - 50) + 'px';
+                heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }
+        }
+
+        function showSadFace() {
+            let sadFace = document.createElement('div');
+            sadFace.classList.add('emoji');
+            sadFace.textContent = '😞';
+            sadFace.style.left = '50%';
+            sadFace.style.top = '50%';
+            sadFace.style.transform = 'translate(-50%, -50%)';
+            sadFace.style.fontSize = '50px';
+            sadFace.style.zIndex = '100'; /* Ensure the sad face appears above all elements */
+            document.body.appendChild(sadFace);
+            setTimeout(() => sadFace.remove(), 3000);
+        }
+    </script>
+</body>
+</html>
