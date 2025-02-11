@@ -13,12 +13,14 @@
             background-color: #ffcccb;
             font-family: Arial, sans-serif;
             text-align: center;
+            overflow: hidden;
         }
         .container {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
         }
         h1 {
             color: #d63384;
@@ -42,14 +44,24 @@
             background-color: red;
             color: white;
         }
+        .emoji {
+            position: absolute;
+            font-size: 24px;
+            opacity: 1;
+            animation: floatUp 3s ease-out forwards;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Will you be my Valentine? ❤️</h1>
         <div class="buttons">
-            <button class="yes-btn" onclick="showMessage('thank you bebi, I love you so much!')">Yes</button>
-            <button class="no-btn" onclick="showMessage(':<')">No</button>
+            <button class="yes-btn" onclick="showMessage('thank you bebi, I love you so much!'); showHearts()">Yes</button>
+            <button class="no-btn" onclick="showMessage(':<'); showSadFace()">No</button>
         </div>
         <p id="message"></p>
     </div>
@@ -57,6 +69,29 @@
     <script>
         function showMessage(msg) {
             document.getElementById('message').textContent = msg;
+        }
+
+        function showHearts() {
+            for (let i = 0; i < 10; i++) {
+                let heart = document.createElement('div');
+                heart.classList.add('emoji');
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + 'px';
+                heart.style.top = Math.random() * 100 + 'px';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }
+        }
+
+        function showSadFace() {
+            let sadFace = document.createElement('div');
+            sadFace.classList.add('emoji');
+            sadFace.textContent = '😞';
+            sadFace.style.left = '50%';
+            sadFace.style.top = '50%';
+            sadFace.style.transform = 'translate(-50%, -50%)';
+            document.body.appendChild(sadFace);
+            setTimeout(() => sadFace.remove(), 3000);
         }
     </script>
 </body>
